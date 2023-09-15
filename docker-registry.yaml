@@ -30,7 +30,7 @@ metadata:
   name: docker-registry
   namespace: docker-registry
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 5000
     protocol: TCP
