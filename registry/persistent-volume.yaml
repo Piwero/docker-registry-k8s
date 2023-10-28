@@ -11,7 +11,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: docker-registry-local-storage
-  local:
+  hostPath:
     path: /mnt/container-registry
 ---
 apiVersion: v1
