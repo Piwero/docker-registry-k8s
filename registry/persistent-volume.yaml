@@ -11,8 +11,16 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: docker-registry-local-storage
-  hostPath:
+  local:
     path: /mnt/container-registry
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - kmaster
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
