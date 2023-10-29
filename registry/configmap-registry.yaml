@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: my-config-registry
-data:
-  NODE_MASTER: "hostname_of_your_node"
