@@ -29,6 +29,7 @@ helm search repo docker-registry
 ```
 Get the latest chart version
 ```commandline
+CHART_VERSION = ADD_CHART_VERSION
 helm upgrade --install docker-registry \
     --namespace container-registry \
     --set replicaCount=1 \
@@ -41,4 +42,11 @@ helm upgrade --install docker-registry \
     --set nodeSelector.node-type=master \
     twuni/docker-registry \
     --version $CHART_VERSION
+```
+
+6. Create cloudflare tunnel
+```commandline
+kubectl apply -f cloudflare/namespace.yaml
+kubectl -n cloudflare create secret generic cloudflare-secrets --from-literal=TUNNEL_TOKEN="YOUR_CLOUDFLARE_TUNNEL_TOKEN"
+kubectl apply -f cloudflare/deployment.yaml
 ```
