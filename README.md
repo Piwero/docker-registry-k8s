@@ -27,21 +27,9 @@ helm repo add twuni https://helm.twun.io
 helm repo update
 helm search repo docker-registry
 ```
-Get the latest chart version
+Replace registry-chart.yaml htpasswd value
 ```commandline
-CHART_VERSION = ADD_CHART_VERSION
-helm upgrade --install docker-registry \
-    --namespace container-registry \
-    --set replicaCount=1 \
-    --set persistence.enabled=true \
-    --set persistence.size=60Gi \
-    --set persistence.deleteEnabled=true \
-    --set persistence.storageClass=docker-registry-local-storage \
-    --set persistence.existingClaim=docker-registry-pv-claim \
-    --set secrets.htpasswd=$(cat $HOME/temp/registry-creds/htpasswd) \
-    --set nodeSelector.node-type=master \
-    twuni/docker-registry \
-    --version $CHART_VERSION
+helm install -f registry/registry-chart.yaml docker-registry -n container-registry twuni/docker-registry
 ```
 
 6. Create cloudflare tunnel
