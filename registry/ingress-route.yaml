@@ -16,5 +16,5 @@ spec:
         - kind: Service
           name: container-registry-service
           namespace: container-registry
-          port: 8000
+          port: 5000
 
