@@ -38,5 +38,4 @@ spec:
     - port: 5000
       targetPort: 5000
   selector:
-    name: docker-registry-container
     app: docker-registry
