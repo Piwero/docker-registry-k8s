@@ -29,7 +29,7 @@ helm search repo docker-registry
 ```
 Replace registry-chart.yaml htpasswd value
 ```commandline
-helm install -f registry/registry-chart.yaml docker-registry -n container-registry twuni/docker-registry
+helm install -f registry/registry-chart.yaml docker-registry -n docker-registry twuni/docker-registry
 ```
 
 6. Create cloudflare tunnel
@@ -37,4 +37,11 @@ helm install -f registry/registry-chart.yaml docker-registry -n container-regist
 kubectl apply -f cloudflare/namespace.yaml
 kubectl -n cloudflare create secret generic cloudflare-secrets --from-literal=TUNNEL_TOKEN="YOUR_CLOUDFLARE_TUNNEL_TOKEN"
 kubectl apply -f cloudflare/deployment.yaml
+```
+7. Login
+```commandline
+docker login \
+   -u $(cat ${HOME}/temp/registry-creds/registry-user.txt) \
+   -p $(cat ${HOME}/temp/registry-creds/registry-pass.txt) \
+   YOUR_DOMAIN
 ```
