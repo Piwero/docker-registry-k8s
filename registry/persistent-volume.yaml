@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: docker-registry-local-storage
   local:
-    path: /mnt/container-registry
+    path: /mnt/container-registry # or path to folder of sda to save images
   nodeAffinity:
     required:
       nodeSelectorTerms:
