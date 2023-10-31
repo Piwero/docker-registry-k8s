@@ -3,10 +3,6 @@ kind: IngressRoute
 metadata:
   name: docker-registry-ingress
   namespace: docker-registry
-  annotations:
-    ingress.kubernetes.io/protocol: http
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   routes:
     - match: Host(`registry.octovine.com`) # Update this with your own domain
