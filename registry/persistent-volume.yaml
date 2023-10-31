@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: docker-registry-local-storage
   local:
-    path: /mnt/docker-registry
+    path: /mnt/container-registry
   nodeAffinity:
     required:
       nodeSelectorTerms:
