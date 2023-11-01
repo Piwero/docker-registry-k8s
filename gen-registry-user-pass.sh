@@ -1,8 +1,8 @@
 bash <<'EOF'
    
 # Change these credentials to your own
-export REGISTRY_USER=admin
-export REGISTRY_PASS=registry
+export REGISTRY_USER=admin # Change this to your own username
+export REGISTRY_PASS=registry # Change this to your own password
 export DESTINATION_FOLDER=${HOME}/temp/registry-creds
    
 # Backup credentials to local files (in case you'll forget them later on)
