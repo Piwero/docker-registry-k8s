@@ -5,7 +5,7 @@ metadata:
   namespace: docker-registry
 spec:
   routes:
-    - match: Host(`registry.octovine.com`) # Update this with your own domain
+    - match: Host(`registry.<YOUR_DOMAIN>.com`) # Update this with your own domain
       kind: Rule
       middlewares: [ ]
       services:
