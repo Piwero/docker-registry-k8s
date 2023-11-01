@@ -1,36 +1,31 @@
-Reference:
-- [Tutorial](https://blog.zachinachshon.com/docker-registry/)
-- [Mount Storage Volumes onto Linux Operating Systems](http://blog.zachinachshon.com/storage-volume/)
 
 Requirements:
-- Docker
-- Kubernetes
-- Helm
+- Raspberry Pi
+- Dietpi
+- Hard Drive connected to Raspberry Pi
+- Docker installed
+- Kubernetes installed
+- Cloudflare account
 
 1. Generate user and password using htpasswd
-
+You can edit the script with your own user and password.
 ```commandline
-source 1-auth.sh
+source gen-registry-user-pass.sh
 ```
 2. Label master node
 ```commandline
 kubectl label nodes $YOUR_NODE_NAME node-type=master
 ```
-3. Mount storage volume -> Check reference above to follow post
-4. Create namespace, persistent volume and persistent volume claim (You might run the next command twice)
+3. Mount storage volume -> Check reference tutorial bellow to mount storage
+5. Update values <> on files
+   - Update <YOUR_DOMAIN> value from [ingress-route.yaml](registry/ingress-route.yaml)
+   - Update <HOSTNAME> value from [persistent-volume.yaml](registry/persistent-volume.yaml)
+4. Create namespace and other K8s registry components
 ```commandline
+kubectl apply -f registry/namespace.yaml
 kubectl apply -f registry/.
 ```
-5. Install helm chart
-```commandline
-helm repo add twuni https://helm.twun.io
-helm repo update
-helm search repo docker-registry
-```
-Replace registry-chart.yaml htpasswd value
-```commandline
-helm install -f registry/registry-chart.yaml docker-registry -n docker-registry twuni/docker-registry
-```
+5. Create a cloudflare tunnel and get token from container
 
 6. Create cloudflare tunnel
 ```commandline
@@ -40,8 +35,11 @@ kubectl apply -f cloudflare/deployment.yaml
 ```
 7. Login
 ```commandline
-docker login \
-   -u $(cat ${HOME}/temp/registry-creds/registry-user.txt) \
-   -p $(cat ${HOME}/temp/registry-creds/registry-pass.txt) \
-   YOUR_DOMAIN
+docker login <YOUR_DOMAIN>
 ```
+   user: $(cat ${HOME}/temp/registry-creds/registry-user.txt)
+   password: $(cat ${HOME}/temp/registry-creds/registry-pass.txt)
+
+
+Reference:
+- [Mount Storage Volumes onto Linux Operating Systems](http://blog.zachinachshon.com/storage-volume/)
