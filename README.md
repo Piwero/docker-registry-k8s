@@ -29,10 +29,12 @@ kubectl apply -f registry/.
 - Get the token from container
 - Add public hostname -> registry.YOUR_DOMAIN
     A- With Service:
-        - Service for Public Hostname -> http://docker-registry-service.docker-registry:5000 or http://<SERVICE_NAME>.<NAMESPACE>:<PORT>
+        - Service for Public Hostname -> http://docker-registry-service.docker-registry:5000 
+        or `http://<SERVICE_NAME>.<NAMESPACE>:<PORT>`
 
     B- With Ingress route
-        - Service for Public Hostname -> http://traefik.kube-system or http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>
+        - Service for Public Hostname -> http://traefik.kube-system 
+        or `http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>`
 
 6. Create cloudflare tunnel
 ```commandline
