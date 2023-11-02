@@ -25,7 +25,10 @@ kubectl label nodes $YOUR_NODE_NAME node-type=master
 kubectl apply -f registry/namespace.yaml
 kubectl apply -f registry/.
 ```
-5. Create a cloudflare tunnel and get token from container
+5. Create a cloudflare tunnel
+- Get the token from container
+- Add public hostname -> registry.YOUR_DOMAIN
+- Service for Public Hostname -> http://traefik.kube-system or http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>
 
 6. Create cloudflare tunnel
 ```commandline
