@@ -8,9 +8,8 @@ Requirements:
 - Cloudflare account
 
 1. Generate user and password using htpasswd
-You can edit the script with your own user and password.
 ```commandline
-source gen-registry-user-pass.sh
+source gen-registry-user-pass.sh <USERNAME> <PASSWORD>
 ```
 2. Label master node
 ```commandline
