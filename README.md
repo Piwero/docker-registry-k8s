@@ -18,7 +18,7 @@ kubectl label nodes $YOUR_NODE_NAME node-type=master
 ```
 3. Mount storage volume -> Check reference tutorial bellow to mount storage
 5. Update values <> on files
-   - Update <YOUR_DOMAIN> value from [ingress-route.yaml](registry/ingress-route.yaml)
+   - Update <YOUR_DOMAIN> value from [ingress-route.yaml](registry/ingress-route.yaml) # Ingress route is not in used yet.
    - Update <HOSTNAME> value from [persistent-volume.yaml](registry/persistent-volume.yaml)
 4. Create namespace and other K8s registry components
 ```commandline
@@ -28,7 +28,11 @@ kubectl apply -f registry/.
 5. Create a cloudflare tunnel
 - Get the token from container
 - Add public hostname -> registry.YOUR_DOMAIN
-- Service for Public Hostname -> http://traefik.kube-system or http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>
+    A- With Service:
+        - Service for Public Hostname -> http://docker-registry-service.docker-registry:5000 or http://<SERVICE_NAME>.<NAMESPACE>:<PORT>
+
+    B- With Ingress route
+        - Service for Public Hostname -> http://traefik.kube-system or http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>
 
 6. Create cloudflare tunnel
 ```commandline
