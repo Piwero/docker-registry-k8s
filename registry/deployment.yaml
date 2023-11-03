@@ -32,7 +32,7 @@ spec:
               value: ~/temp/registry/certhtpasswd
 
       volumes:
-        - name: postgres-volume-mount
+        - name: registry-volume-mount
           persistentVolumeClaim:
             claimName: docker-registry-pv-claim
 ---
