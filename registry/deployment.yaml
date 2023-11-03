@@ -19,6 +19,17 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
+          env:
+            - name: REGISTRY_HTTP_TLS_CERTIFICATE
+              value: /temp/certs/registry_auth.crt
+            - name: REGISTRY_HTTP_TLS_KEY
+              value: /temp/certs/registry_auth.key
+            - name: REGISTRY_AUTH
+              value: htpasswd
+            - name: REGISTRY_AUTH_HTPASSWD_REALM
+              value: Registry Realm
+            - name: REGISTRY_AUTH_HTPASSWD_PATH
+              value: /temp/auth/htpasswd
 
       volumes:
         - name: postgres-volume-mount
