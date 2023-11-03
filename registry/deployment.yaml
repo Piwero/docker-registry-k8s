@@ -31,10 +31,17 @@ spec:
             - name: REGISTRY_AUTH_HTPASSWD_PATH
               value: ~/temp/registry/certhtpasswd
 
+          volumeMounts:
+            - name: registry-tls
+              mountPath: ~/temp/registry/cert
+            - name: registry-auth
+              mountPath: ~/temp/registry/creds
+
       volumes:
         - name: registry-volume-mount
           persistentVolumeClaim:
             claimName: docker-registry-pv-claim
+
 ---
 apiVersion: v1
 kind: Service
