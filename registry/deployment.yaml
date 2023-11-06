@@ -21,21 +21,21 @@ spec:
             - containerPort: 5000
           env:
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
-              value: ~/temp/registry/cert/registry_auth.crt
+              value: /var/lib/registry/cert/registry_auth.crt
             - name: REGISTRY_HTTP_TLS_KEY
-              value: ~/temp/registry/cert/registry_auth.key
+              value: /var/lib/registry/cert/registry_auth.key
             - name: REGISTRY_AUTH
               value: htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_REALM
               value: Registry Realm
             - name: REGISTRY_AUTH_HTPASSWD_PATH
-              value: ~/temp/registry/certhtpasswd
+              value: /var/lib/registry/cert/htpasswd
 
           volumeMounts:
             - name: registry-tls
               mountPath: /var/lib/registry/cert
             - name: registry-auth
-              mountPath: /var/lib/registry/creds
+              mountPath: /var/lib/registry/cert
 
       volumes:
         - name: registry-volume-mount
