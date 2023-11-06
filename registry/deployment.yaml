@@ -29,13 +29,13 @@ spec:
             - name: REGISTRY_AUTH_HTPASSWD_REALM
               value: Registry Realm
             - name: REGISTRY_AUTH_HTPASSWD_PATH
-              value: /var/lib/registry/cert/htpasswd
+              value: /var/lib/registry/auth/htpasswd
 
           volumeMounts:
             - name: registry-tls
               mountPath: /var/lib/registry/cert
             - name: registry-auth
-              mountPath: /var/lib/registry/cert
+              mountPath: /var/lib/registry/auth
 
       volumes:
         - name: registry-volume-mount
