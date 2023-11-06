@@ -51,3 +51,20 @@ docker login <YOUR_DOMAIN>
 
 Reference:
 - [Mount Storage Volumes onto Linux Operating Systems](http://blog.zachinachshon.com/storage-volume/)
+
+---
+# Problems
+## Delete Persistent Volume
+Sometimes you may want to delete the persistent volume, but gets stuck.
+You can do this:
+`kubectl -n container-registry edit pv`
+and delete lines
+```yaml
+  finalizers:
+  - kubernetes.io/pv-protection
+```
+then
+```commandline
+kubect delete pv docker-registry-pv --grace-period=0 --force -n container-registry
+```
+
