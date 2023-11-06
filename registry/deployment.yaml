@@ -30,22 +30,12 @@ spec:
               value: Registry Realm
             - name: REGISTRY_AUTH_HTPASSWD_PATH
               value: /var/lib/registry/auth/htpasswd
-            - name: TLS_DIR
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-registry
-                  key: TLS_DIR
-            - name: AUTH_DIR
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap-registry
-                  key: AUTH_DIR
 
           volumeMounts:
             - name: registry-tls
-              mountPath: TLS_DIR
+              mountPath: /var/lib/registry/cert
             - name: registry-auth
-              mountPath: AUTH_DIR
+              mountPath: /var/lib/registry/auth
 
       volumes:
         - name: registry-volume-mount

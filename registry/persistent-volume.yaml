@@ -20,7 +20,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - $(HOSTNAME) # This is the hostname of your cluster (name of your Raspberry Pi)
+          - <HOSTNAME> # This is the hostname of your cluster (name of your Raspberry Pi)
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
