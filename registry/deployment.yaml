@@ -22,7 +22,6 @@ spec:
           env:
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
               value: /etc/tls/tls.key
-
             - name: REGISTRY_HTTP_TLS_KEY
               value: /etc/tls/tls.cert
             - name: REGISTRY_AUTH
@@ -30,26 +29,23 @@ spec:
             - name: REGISTRY_AUTH_HTPASSWD_REALM
               value: Registry Realm
             - name: REGISTRY_AUTH_HTPASSWD_PATH
-              valueFrom:
-                secretKeyRef:
-                  name: auth-secrets
-                  key: htpasswd
+              value: /etc/auth/htpasswd
           volumeMounts:
-            - name: tls-secret
+            - name: tls-mount
               mountPath: /etc/tls
-            - name: registry-auth
-              mountPath: /var/lib/registry/auth
+            - name: auth-mount
+              mountPath: /etc/auth/htpasswd
 
       volumes:
         - name: registry-volume-mount
           persistentVolumeClaim:
             claimName: docker-registry-pv-claim
-        - name: tls-secret
+        - name: tls-mount
           secret:
             secretName: tls-secrets
-        - name: registry-auth
-          hostPath:
-            path: /tmp/registry/auth
+        - name: auth-mount
+          secret:
+            secretName: auth-secrets
 
 ---
 apiVersion: v1
