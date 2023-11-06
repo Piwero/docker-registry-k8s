@@ -33,14 +33,20 @@ spec:
 
           volumeMounts:
             - name: registry-tls
-              mountPath: ~/temp/registry/cert
+              mountPath: /var/lib/registry/cert
             - name: registry-auth
-              mountPath: ~/temp/registry/creds
+              mountPath: /var/lib/registry/creds
 
       volumes:
         - name: registry-volume-mount
           persistentVolumeClaim:
             claimName: docker-registry-pv-claim
+        - name: registry-tls
+          hostPath:
+            path: /tmp/registry/creds
+        - name: registry-auth
+          hostPath:
+            path: /tmp/registry/certhtpasswd
 
 ---
 apiVersion: v1

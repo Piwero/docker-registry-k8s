@@ -2,7 +2,7 @@
 
 REGISTRY_USER=${1:-admin}
 REGISTRY_PASS=${2:-registry}
-DESTINATION_FOLDER=${HOME}/temp/registry/creds
+DESTINATION_FOLDER= /tmp/registry/creds
 
 # Backup credentials to local files (in case you'll forget them later on)
 mkdir -p ${DESTINATION_FOLDER}
