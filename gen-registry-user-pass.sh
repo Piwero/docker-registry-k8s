@@ -5,7 +5,8 @@ REGISTRY_PASS=${2:-registry}
 DESTINATION_FOLDER=/tmp/registry/certhtpasswd
 
 # Backup credentials to local files (in case you'll forget them later on)
-mkdir -p ${DESTINATION_FOLDER}
+mkdir -m 777 -p ${DESTINATION_FOLDER}
+
 echo ${REGISTRY_USER} >> ${DESTINATION_FOLDER}/registry-user.txt
 echo ${REGISTRY_PASS} >> ${DESTINATION_FOLDER}/registry-pass.txt
 
