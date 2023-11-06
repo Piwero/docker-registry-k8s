@@ -21,15 +21,10 @@ spec:
             - containerPort: 5000
           env:
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
-              valueFrom:
-                secretKeyRef:
-                  name: tls-secrets
-                  key: tls.crt
+              value: /etc/tls/tls.key
+
             - name: REGISTRY_HTTP_TLS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: tls-secrets
-                  key: tls.key
+              value: /etc/tls/tls.cert
             - name: REGISTRY_AUTH
               value: htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_REALM
@@ -40,8 +35,8 @@ spec:
                   name: auth-secrets
                   key: htpasswd
           volumeMounts:
-            - name: registry-tls
-              mountPath: /var/lib/registry/cert
+            - name: tls-secret
+              mountPath: /etc/tls
             - name: registry-auth
               mountPath: /var/lib/registry/auth
 
@@ -49,9 +44,9 @@ spec:
         - name: registry-volume-mount
           persistentVolumeClaim:
             claimName: docker-registry-pv-claim
-        - name: registry-tls
-          hostPath:
-            path: /tmp/registry/tls
+        - name: tls-secret
+          secret:
+            secretName: tls-secrets
         - name: registry-auth
           hostPath:
             path: /tmp/registry/auth
