@@ -20,8 +20,8 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: REGISTRY_HTTP_TLS_CERTIFICATE
-              value: /var/lib/registry/cert/registry_auth.crt
+#            - name: REGISTRY_HTTP_TLS_CERTIFICATE
+#              value: /var/lib/registry/cert/registry_auth.crt
             - name: REGISTRY_HTTP_TLS_KEY
               value: /var/lib/registry/cert/registry_auth.key
             - name: REGISTRY_AUTH
