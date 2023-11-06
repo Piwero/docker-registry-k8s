@@ -10,6 +10,7 @@ Requirements:
 1. Generate user and password using htpasswd
 ```commandline
 source gen-registry-user-pass.sh <USERNAME> <PASSWORD>
+source gen-TLS-certificates.sh
 ```
 2. Label master node
 ```commandline
@@ -22,6 +23,8 @@ kubectl label nodes $YOUR_NODE_NAME node-type=master
 4. Create namespace and other K8s registry components
 ```commandline
 kubectl apply -f registry/namespace.yaml
+kubectl -n docker-registry create secret tls tls-secrets --key="/tmp/registry/tls/registry_auth.key" --cert="/tmp/registry/tls/registry_auth.crt"
+kubectl -n docker-registry create secret generic auth-secrets --from-file="/tmp/registry/auth/htpasswd"
 kubectl apply -f registry/.
 ```
 5. Create a cloudflare tunnel
