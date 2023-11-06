@@ -43,10 +43,10 @@ spec:
             claimName: docker-registry-pv-claim
         - name: registry-tls
           hostPath:
-            path: /tmp/registry/tls
+            path: /opt/registry/tls
         - name: registry-auth
           hostPath:
-            path: /tmp/registry/auth
+            path: /opt/registry/auth
 
 ---
 apiVersion: v1
