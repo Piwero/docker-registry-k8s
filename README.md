@@ -18,8 +18,8 @@ kubectl label nodes $YOUR_NODE_NAME node-type=master
 ```
 3. Mount storage volume -> Check reference tutorial bellow to mount storage
 5. Update values <> on files
-   - Update <YOUR_DOMAIN> value from [ingress-route.yaml](registry/ingress-route.yaml) # Ingress route is not in used yet.
    - Update <HOSTNAME> value from [persistent-volume.yaml](registry/persistent-volume.yaml)
+   - NOT IN USE - Update <YOUR_DOMAIN> value from [ingress-route.yaml](registry/ingress-route.yaml) # Ingress route is not in used yet.
 4. Create namespace and other K8s registry components
 ```commandline
 kubectl apply -f registry/namespace.yaml

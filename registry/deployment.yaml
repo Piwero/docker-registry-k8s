@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docker-registry-deployment
+  name: docker-registry
   namespace: docker-registry
 spec:
   replicas: 1
@@ -21,16 +21,24 @@ spec:
             - containerPort: 5000
           env:
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
-              value: /var/lib/registry/cert/registry_auth.crt
+              valueFrom:
+                secretKeyRef:
+                  name: tls-secrets
+                  key: tls.crt
             - name: REGISTRY_HTTP_TLS_KEY
-              value: /var/lib/registry/cert/registry_auth.key
+              valueFrom:
+                secretKeyRef:
+                  name: tls-secrets
+                  key: tls.key
             - name: REGISTRY_AUTH
               value: htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_REALM
               value: Registry Realm
             - name: REGISTRY_AUTH_HTPASSWD_PATH
-              value: /var/lib/registry/auth/htpasswd
-
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secrets
+                  key: htpasswd
           volumeMounts:
             - name: registry-tls
               mountPath: /var/lib/registry/cert
