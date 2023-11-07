@@ -10,8 +10,8 @@ Requirements:
 1. Generate user and password using htpasswd
 ```commandline
 source gen-registry-user-pass.sh <USERNAME> <PASSWORD>
-source gen-TLS-certificates.sh
 ```
+~~source gen-TLS-certificates.sh~~
 2. Label master node
 ```commandline
 kubectl label nodes $YOUR_NODE_NAME node-type=master
@@ -24,7 +24,7 @@ kubectl label nodes $YOUR_NODE_NAME node-type=master
 ```commandline
 kubectl apply -f registry/namespace.yaml
 kubectl -n docker-registry create secret tls tls-secrets --key="/tmp/registry/tls/registry_auth.key" --cert="/tmp/registry/tls/registry_auth.crt"
-kubectl -n docker-registry create secret generic auth-secrets --from-file="/tmp/registry/auth/htpasswd"
+# kubectl -n docker-registry create secret generic auth-secrets --from-file="/tmp/registry/auth/htpasswd"
 kubectl apply -f registry/.
 ```
 5. Create a cloudflare tunnel
@@ -34,9 +34,9 @@ kubectl apply -f registry/.
         - Service for Public Hostname -> http://docker-registry-service.docker-registry:5000 
         or `http://<SERVICE_NAME>.<NAMESPACE>:<PORT>`
 
-    B- With Ingress route
-        - Service for Public Hostname -> http://traefik.kube-system 
-        or `http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>`
+    B- ~~With Ingress route~~
+        - ~~Service for Public Hostname -> http://traefik.kube-system~~
+        ~~or `http://<TRAEFIK_DEPLOYMENT_NAME>.<NAMESPACE>`~~
 
 6. Create cloudflare tunnel
 ```commandline
