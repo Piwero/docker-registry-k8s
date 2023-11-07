@@ -34,7 +34,7 @@ spec:
             - name: tls-mount
               mountPath: /etc/tls
             - name: auth-mount
-              mountPath: /etc/auth/htpasswd
+              mountPath: /etc/auth
 
       volumes:
         - name: registry-volume-mount
