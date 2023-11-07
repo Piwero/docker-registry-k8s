@@ -23,7 +23,7 @@ spec:
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
               value: /etc/tls/tls.key
             - name: REGISTRY_HTTP_TLS_KEY
-              value: /etc/tls/tls.cert
+              value: /etc/tls/tls.crt
             - name: REGISTRY_AUTH
               value: htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_REALM
