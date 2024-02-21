@@ -47,9 +47,11 @@ kubectl apply -f cloudflare/deployment.yaml
 7. Login
 ```commandline
 docker login <YOUR_DOMAIN>
-```
+
    user: $(cat ${HOME}/temp/registry-creds/registry-user.txt)
    password: $(cat ${HOME}/temp/registry-creds/registry-pass.txt)
+```
+
 
 
 Reference:
