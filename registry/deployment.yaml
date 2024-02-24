@@ -31,8 +31,8 @@ spec:
             - name: REGISTRY_AUTH_HTPASSWD_PATH
               value: /etc/auth/htpasswd
           volumeMounts:
-            - name: tls-mount
-              mountPath: /etc/tls
+#            - name: tls-mount
+#              mountPath: /etc/tls
             - name: auth-mount
               mountPath: /etc/auth
 
